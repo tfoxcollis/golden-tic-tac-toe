@@ -1,6 +1,10 @@
 :root {
 
 }
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html, body {
   height: 100%;
@@ -11,11 +15,12 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  background-image: linear-gradient(#9A3263, #449D9A);
 
 }
 
 .box {
-  border: 1px solid red
+  border: 1px solid black;
 }
 
 .player-column {
@@ -27,6 +32,10 @@ body {
   padding-top: 50px;
 }
 
+.player-img {
+  height: 170px;
+}
+
 .quote-box {
   width: 95%;
   min-height: 200px;
@@ -36,37 +45,49 @@ body {
   width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .game-header {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   width: 100%;
   height: 20%;
   border-bottom: solid 2px black;
 }
 
 .game-header h1 {
-  font-size: 60px;
+  font-size: 10vh;;
+  height: 80%;
+  /* margin-bottom: 10px; */
 }
 
 .game-header img {
-  margin: 5px 5px 0px 20px;
-  height: 120px;
+  margin: 5px 5px 20px 20px;
+  height: 80%;
 }
 
 .ttt-box {
   width: 500px;
-  height: 75%;
-  margin-top: 20px;
+  height: 60%;
+  margin-top: 10%;
   display: flex;
   flex-wrap: wrap;
+  background-image: linear-gradient(#449D9A, #9A3263);
 }
 
 .board-box {
-  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
   flex: 1 0 30%;
-  height: 30%;
+  height: 32%;
+  background-color: #8F7084;
+}
+
+.border-img {
+  height: 80%;
 }
