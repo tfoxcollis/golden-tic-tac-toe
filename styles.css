@@ -21,7 +21,7 @@ body {
 }
 
 .box {
-  border: 1px solid black;
+  border: 2px solid black;
 }
 
 .player-column {
@@ -69,7 +69,7 @@ blockquote {
   align-items: flex-end;
   width: 100%;
   height: 20%;
-  border-bottom: solid 2px black;
+  border-bottom: double 8px black;
 }
 
 .game-header h1 {
