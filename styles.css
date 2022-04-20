@@ -1,0 +1,37 @@
+:root {
+
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
+.box {
+  border: 1px solid red
+}
+
+.player-column {
+  width: 20%;
+}
+
+.game-column {
+  width: 60%;
+}
+
+.game-header {
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 2px black;
+}
+
+.game-header h1 {
+  font-size: 30px;
+
+}
