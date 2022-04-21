@@ -27,7 +27,7 @@ window.addEventListener('load', () => {
 tttBox.addEventListener('click', () => {
 //did someone win? (check winning combinations)
     //yes -> delay for 10 seconds, prevent anymore gameplay, increase win #, display win/lose quote
-        //clear board, startNewGame(), setStarterPlayer()
+        //clearBoard(), startNewGame(), setStarterPlayer()
     //no -> change to next player
 })
 
