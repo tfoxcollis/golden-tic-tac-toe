@@ -87,6 +87,7 @@ blockquote {
   width: 500px;
   height: 60%;
   margin-top: 10%;
+  padding-bottom: 2px;
   display: flex;
   flex-wrap: wrap;
   background-image: linear-gradient(#449D9A, #9A3263);
