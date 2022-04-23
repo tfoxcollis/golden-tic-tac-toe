@@ -20,8 +20,13 @@ window.addEventListener('load', () => {
 })
 
 tttBox.addEventListener('click', () => {
+  var article = event.target.closest("article")
+  if(currentGame['board'][article.id] === ""){
+    addPlayerToken(article);
+    alternatePlayer();
+  }
 //did someone win? (check winning combinations)
-    //yes -> delay for 10 seconds, prevent anymore gameplay, increase win #, display win/lose quote
+    //yes -> delay for 10 seconds, setTimeout(), prevent anymore gameplay, increase win #, display win/lose quote
         //clearBoard(), startNewGame(), setStarterPlayer()
     //no -> change to next player
 })
@@ -45,21 +50,53 @@ function setStarterPlayer() {
   }
 }
 
+function alternatePlayer() {
+  if(currentPlayer.id == "one") {
+    currentPlayer = player2;
+  }else{
+    currentPlayer = player1;
+  }
+}
+
+function addPlayerToken(article) {
+  currentGame.board[article.id] = currentPlayer.id
+  article.innerHTML = `<img class="player-img" src="${currentPlayer.token}" alt="player token">`
+}
+
 function clearBoard() {
   tttBox.innerHTML = `
-    <article class="a1 board-box box"></article>
-    <article class="b1 board-box box"></article>
-    <article class="c1 board-box box"></article>
-    <article class="a2 board-box box"></article>
-    <article class="b2 board-box box"></article>
-    <article class="c2 board-box box"></article>
-    <article class="a3 board-box box"></article>
-    <article class="b3 board-box box"></article>
-    <article class="c3 board-box box"></article>
+    <article id="a1" class="board-box box"></article>
+    <article id="b1" class="board-box box"></article>
+    <article id="c1" class="board-box box"></article>
+    <article id="a2" class="board-box box"></article>
+    <article id="b2" class="board-box box"></article>
+    <article id="c2" class="board-box box"></article>
+    <article id="a3" class="board-box box"></article>
+    <article id="b3" class="board-box box"></article>
+    <article id="c3" class="board-box box"></article>
   `;
 }
+//a1, b1, c1
+//a1, a2, a3
+//a2, b2, c2
+//a3, b3, c3
+//a1, b2, c3
+//b1, b2, b3
+//c1, b3, a3
 
 function clearQuotes() {
   playerOneQuote.innerText = "";
   playerTwoQuote.innerText = "";
+}
+
+// function setTimeout(function () {
+//
+// }, 15000);
+
+// function loadRandomQuote() {
+//
+// }
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 }
