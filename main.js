@@ -8,11 +8,6 @@ var playerTwoQuote = document.querySelector("#playerTwoQuote");
 var gameTitle = document.querySelector("#gameTitle");
 var tttBox = document.querySelector("#tttBox");
 
-var blancheWins = [];
-var blancheLoses = [];
-var dorothyhWins = [];
-var dorothyLoses = [];
-
 var currentGame
 var player1 = new Player("one", "./assets/blanche.PNG")
 var player2 = new Player("two", "./assets/dorothy.PNG")

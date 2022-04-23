@@ -1,4 +1,8 @@
 :root {
+--font-family: fantasy;
+--mintGreen: #449D9A;
+--rose: #9A3263;
+--mauve: #8F7084;
 
 }
 * {
@@ -8,15 +12,14 @@
 
 html, body {
   height: 100%;
-  /* font-family: "Berkshire Swash"; */
-  font-family: fantasy;
+  font-family: var(--font-family);
 }
 
 body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-image: linear-gradient(#9A3263, #449D9A);
+  background-image: linear-gradient(var(--rose), var(--mintGreen));
 
 }
 
@@ -75,7 +78,6 @@ blockquote {
 .game-header h1 {
   font-size: 10vh;;
   height: 80%;
-  /* margin-bottom: 10px; */
 }
 
 .game-header img {
@@ -90,7 +92,7 @@ blockquote {
   padding-bottom: 2px;
   display: flex;
   flex-wrap: wrap;
-  background-image: linear-gradient(#449D9A, #9A3263);
+  background-image: linear-gradient(var(--mintGreen), var(--rose));
 }
 
 .board-box {
@@ -100,7 +102,7 @@ blockquote {
   margin: 2px;
   flex: 1 0 30%;
   height: 32%;
-  background-color: #8F7084;
+  background-color: var(--mauve);
 }
 
 .border-img {
