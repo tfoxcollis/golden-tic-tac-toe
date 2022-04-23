@@ -26,24 +26,20 @@ tttBox.addEventListener('click', () => {
     if(currentGame.findWinner(currentPlayer.id)){
       increaseWins();
       displayWinner();
-      // displayQuote()
+      displayQuotes();
       setTimeout(() => {
-        clearBoard()
-        startNewGame()
-        setStarterPlayer()
-      }, 2000)
+        clearQuotes();
+        clearBoard();
+        startNewGame();
+        setStarterPlayer();
+      }, 5000)
     }else{
       alternatePlayer();
     }
   }
-//did someone win? (check winning combinations)
-    //yes -> delay for 10 seconds, setTimeout(), prevent anymore gameplay, increase win #, display win/lose quote
-        //clearBoard(), startNewGame(), setStarterPlayer()
-    //no -> change to next player
 })
 
 // functions
-
 function increaseWins() {
   currentPlayer.increaseWins()
   playerOneWins.innerText = `${player1.wins} wins`
@@ -53,6 +49,7 @@ function increaseWins() {
 function displayWinner(){
   gameTitle.innerText = `${currentPlayer.name} Wins!`
 }
+
 function startNewGame() {
   currentGame = new Game(player1, player2)
   gameCount++
@@ -112,9 +109,19 @@ function clearQuotes() {
   playerTwoQuote.innerText = "";
 }
 
-// function loadRandomQuote() {
-//if currentPlayerwins - find currentPlayer winning array and generate random quote
-// }
+function displayQuotes() {
+  if(player1 === currentPlayer){
+    loadRandomQuote(playerOneQuote, blancheWins);
+    loadRandomQuote(playerTwoQuote, dorothyLoses);
+  }else {
+    loadRandomQuote(playerTwoQuote, dorothyWins);
+    loadRandomQuote(playerOneQuote, blancheLoses);
+  }
+}
+
+function loadRandomQuote(player, array) {
+  player.innerText = array[getRandomIndex(array)]
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
