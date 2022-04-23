@@ -9,8 +9,8 @@ var gameTitle = document.querySelector("#gameTitle");
 var tttBox = document.querySelector("#tttBox");
 
 var currentGame
-var player1 = new Player("one", "./assets/blanche.PNG")
-var player2 = new Player("two", "./assets/dorothy.PNG")
+var player1 = new Player("one", "./assets/blanche.PNG", "Blanche")
+var player2 = new Player("two", "./assets/dorothy.PNG", "Dorothy")
 var currentPlayer = player1
 var gameCount = 0
 
@@ -60,6 +60,7 @@ function alternatePlayer() {
   }else{
     currentPlayer = player1;
   }
+  gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
 }
 
 function addPlayerToken(article) {
