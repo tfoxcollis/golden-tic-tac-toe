@@ -24,7 +24,14 @@ tttBox.addEventListener('click', () => {
   if(currentGame['board'][article.id] === ""){
     addPlayerToken(article);
     if(currentGame.findWinner(currentPlayer.id)){
-      debugger
+      increaseWins();
+      displayWinner();
+      // displayQuote()
+      setTimeout(() => {
+        clearBoard()
+        startNewGame()
+        setStarterPlayer()
+      }, 2000)
     }else{
       alternatePlayer();
     }
@@ -38,9 +45,14 @@ tttBox.addEventListener('click', () => {
 // functions
 
 function increaseWins() {
+  currentPlayer.increaseWins()
   playerOneWins.innerText = `${player1.wins} wins`
+  playerTwoWins.innerText = `${player2.wins} wins`
 }
 
+function displayWinner(){
+  gameTitle.innerText = `${currentPlayer.name} Wins!`
+}
 function startNewGame() {
   currentGame = new Game(player1, player2)
   gameCount++
@@ -52,6 +64,7 @@ function setStarterPlayer() {
   }else{
     currentPlayer = player1;
   }
+  gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
 }
 
 function alternatePlayer() {
@@ -81,26 +94,14 @@ function clearBoard() {
     <article id="c3" class="board-box box"></article>
   `;
 }
-//a1, b1, c1
-//a2, b2, c2
-//a3, b3, c3
-//a1, a2, a3
-//b1, b2, b3
-//c1, c2, c3
-//a1, b2, c3
-//c1, b2, a3
 
 function clearQuotes() {
   playerOneQuote.innerText = "";
   playerTwoQuote.innerText = "";
 }
 
-// function setTimeout(function () {
-//
-// }, 15000);
-
 // function loadRandomQuote() {
-//
+//if currentPlayerwins - find currentPlayer winning array and generate random quote
 // }
 
 function getRandomIndex(array) {
