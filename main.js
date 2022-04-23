@@ -9,8 +9,8 @@ var gameTitle = document.querySelector("#gameTitle");
 var tttBox = document.querySelector("#tttBox");
 
 var currentGame
-var player1 = new Player("one", "./assets/blanche.PNG", "Blanche")
-var player2 = new Player("two", "./assets/dorothy.PNG", "Dorothy")
+var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche")
+var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy")
 var currentPlayer = player1
 var gameCount = 0
 
@@ -65,6 +65,7 @@ function setStarterPlayer() {
     currentPlayer = player1;
   }
   gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
+  setPlayerImage();
 }
 
 function alternatePlayer() {
@@ -74,11 +75,22 @@ function alternatePlayer() {
     currentPlayer = player1;
   }
   gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
+  setPlayerImage();
+}
+
+function setPlayerImage() {
+  if(player1 === currentPlayer){
+    playerOneImg.src = player1.activeToken;
+    playerTwoImg.src = player2.inactiveToken;
+  }else {
+    playerOneImg.src = player1.inactiveToken;
+    playerTwoImg.src = player2.activeToken;
+  }
 }
 
 function addPlayerToken(article) {
   currentGame.board[article.id] = currentPlayer.id
-  article.innerHTML = `<img class="player-img" src="${currentPlayer.token}" alt="player token">`
+  article.innerHTML = `<img class="player-img" src="${currentPlayer.inactiveToken}" alt="player token">`
 }
 
 function clearBoard() {
