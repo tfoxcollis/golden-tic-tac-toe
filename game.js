@@ -8,4 +8,23 @@ class Game{
                    a3: "", b3: "", c3: ""
                  }
   }
+
+  findWinner(currentPlayerId) {
+    for(var i = 0; i < winningCombos.length; i++){
+      if(this.checkComboForId(winningCombos[i], currentPlayerId)){
+        return true
+      }
+    }
+  }
+  checkComboForId(combo, currentPlayerId){
+    var count = 0;
+    for (var i = 0; i < combo.length; i++) {
+      if(this.board[combo[i]] == currentPlayerId){
+        count++
+      }
+    }
+    if(count == 3){
+      return true
+    }
+  }
 }

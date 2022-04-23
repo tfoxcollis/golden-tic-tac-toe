@@ -23,7 +23,11 @@ tttBox.addEventListener('click', () => {
   var article = event.target.closest("article")
   if(currentGame['board'][article.id] === ""){
     addPlayerToken(article);
-    alternatePlayer();
+    if(currentGame.findWinner(currentPlayer.id)){
+      debugger
+    }else{
+      alternatePlayer();
+    }
   }
 //did someone win? (check winning combinations)
     //yes -> delay for 10 seconds, setTimeout(), prevent anymore gameplay, increase win #, display win/lose quote
@@ -77,12 +81,13 @@ function clearBoard() {
   `;
 }
 //a1, b1, c1
-//a1, a2, a3
 //a2, b2, c2
 //a3, b3, c3
-//a1, b2, c3
+//a1, a2, a3
 //b1, b2, b3
-//c1, b3, a3
+//c1, c2, c3
+//a1, b2, c3
+//c1, b2, a3
 
 function clearQuotes() {
   playerOneQuote.innerText = "";
