@@ -21,9 +21,10 @@ window.addEventListener('load', () => {
 
 tttBox.addEventListener('click', () => {
   var article = event.target.closest("article")
-  if(currentGame['board'][article.id] === ""){
+  if(currentGame['board'][article.id] === "" && currentGame.active === true){
     addPlayerToken(article);
     if(currentGame.findWinner(currentPlayer.id)){
+      currentGame.active = false;
       increaseWins();
       displayWinner();
       displayQuotes();
@@ -33,10 +34,15 @@ tttBox.addEventListener('click', () => {
         startNewGame();
         setStarterPlayer();
       }, 5000)
+    }else if(currentGame.turnCounter === 9){
+      clearBoard();
+      startNewGame();
+      setStarterPlayer();
     }else{
       alternatePlayer();
     }
   }
+  //game draw- no winners-
 })
 
 // functions
@@ -73,6 +79,7 @@ function alternatePlayer() {
   }
   gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
   setPlayerImage();
+  currentGame.turnCounter++
 }
 
 function setPlayerImage() {

@@ -2,6 +2,8 @@ class Game{
   constructor(player1, player2) {
     this.playerOne = player1;
     this.playerTwo = player2;
+    this.turnCounter = 1;
+    this.active = true;
     this.board = {
                    a1: "", b1: "", c1: "",
                    a2: "", b2: "", c2: "",
