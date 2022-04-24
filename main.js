@@ -1,4 +1,4 @@
-//query selectors
+//Query selectors
 var playerOneImg = document.querySelector("#playerOneImg");
 var playerTwoImg = document.querySelector("#playerTwoImg");
 var playerOneWins = document.querySelector("#playerOneWins");
@@ -8,11 +8,12 @@ var playerTwoQuote = document.querySelector("#playerTwoQuote");
 var gameTitle = document.querySelector("#gameTitle");
 var tttBox = document.querySelector("#tttBox");
 
+//Global variables
 var currentGame
-var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche")
-var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy")
-var currentPlayer = player1
-var gameCount = 0
+var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
+var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
+var currentPlayer = player1;
+var gameCount = 0;
 
 // eventlisteners
 window.addEventListener('load', () => {
@@ -20,73 +21,71 @@ window.addEventListener('load', () => {
 })
 
 tttBox.addEventListener('click', () => {
-  var article = event.target.closest("article")
+  var article = event.target.closest("article");
   if(currentGame['board'][article.id] === "" && currentGame.active === true){
     addPlayerToken(article);
-    if(currentGame.findWinner(currentPlayer.id)){
-      currentGame.active = false;
-      increaseWins();
-      displayWinner();
-      displayQuotes();
-      setTimeout(() => {
-        clearQuotes();
-        clearBoard();
-        startNewGame();
-        setStarterPlayer();
-      }, 5000)
-    }else if(currentGame.turnCounter === 9){
-      displayDrawGame()
-      setTimeout(() => {
-        clearBoard();
-        clearQuotes();
-        startNewGame();
-        setStarterPlayer();
-      }, 5000)
-    }else{
-      alternatePlayer();
-    }
   }
-})
+  if(currentGame.findWinner(currentPlayer.id)){
+    currentGame.active = false;
+    increaseWins();
+    setGameTitle(`${currentPlayer.name} Wins!`);
+    displayQuotes();
+    delayRestart();
+  }else if(currentGame.turnCounter === 9){
+    displayDrawGame()
+    delayRestart();
+  }else{
+    alternatePlayer();
+  }
+});
 
 // functions
 function increaseWins() {
-  currentPlayer.increaseWins()
-  playerOneWins.innerText = `${player1.wins} wins`
-  playerTwoWins.innerText = `${player2.wins} wins`
-}
-
-function displayWinner(){
-  gameTitle.innerText = `${currentPlayer.name} Wins!`
+  currentPlayer.increaseWins();
+  playerOneWins.innerText = `${player1.wins} wins`;
+  playerTwoWins.innerText = `${player2.wins} wins`;
 }
 
 function startNewGame() {
-  currentGame = new Game(player1, player2)
-  gameCount++
+  currentGame = new Game(player1, player2);
+  gameCount++;
+}
+
+function delayRestart(){
+  setTimeout(() => {
+    clearQuotes();
+    clearBoard();
+    startNewGame();
+    setStarterPlayer();
+  }, 10000)
 }
 
 function setStarterPlayer() {
-  if(gameCount %2 == 0){
-    currentPlayer = player2;
-  }else{
-    currentPlayer = player1;
-  }
-  gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
+  togglePlayer(gameCount %2 == 0);
+  setGameTitle(`It's ${currentPlayer.name}'s turn!`)
   setPlayerImage();
 }
 
+function setGameTitle(string){
+  gameTitle.innerText = string
+}
 function alternatePlayer() {
-  if(currentPlayer.id == "one") {
+  togglePlayer(currentPlayer.id == "one");
+  setGameTitle(`It's ${currentPlayer.name}'s turn!`);
+  setPlayerImage();
+  currentGame.turnCounter++;
+}
+
+function togglePlayer(conditional) {
+  if(conditional) {
     currentPlayer = player2;
   }else{
     currentPlayer = player1;
   }
-  gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
-  setPlayerImage();
-  currentGame.turnCounter++
 }
 
 function displayDrawGame(){
-  gameTitle.innerText = `It's a Draw!`
+  setGameTitle(`It's a Draw!`)
   loadRandomQuote(playerOneQuote, blancheLoses);
   loadRandomQuote(playerTwoQuote, dorothyLoses);
 }
@@ -102,8 +101,8 @@ function setPlayerImage() {
 }
 
 function addPlayerToken(article) {
-  currentGame.board[article.id] = currentPlayer.id
-  article.innerHTML = `<img class="player-img" src="${currentPlayer.inactiveToken}" alt="player token">`
+  currentGame.board[article.id] = currentPlayer.id;
+  article.innerHTML = `<img class="player-img" src="${currentPlayer.inactiveToken}" alt="player token">`;
 }
 
 function clearBoard() {
@@ -136,7 +135,7 @@ function displayQuotes() {
 }
 
 function loadRandomQuote(player, array) {
-  player.innerText = array[getRandomIndex(array)]
+  player.innerText = array[getRandomIndex(array)];
 }
 
 function getRandomIndex(array) {

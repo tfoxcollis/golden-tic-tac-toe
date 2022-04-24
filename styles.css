@@ -3,8 +3,8 @@
 --mintGreen: #449D9A;
 --rose: #9A3263;
 --mauve: #8F7084;
-
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -20,7 +20,6 @@ body {
   flex-direction: row;
   justify-content: space-evenly;
   background-image: linear-gradient(var(--rose), var(--mintGreen));
-
 }
 
 .box {
@@ -58,6 +57,7 @@ blockquote {
   font-weight: lighter;
   text-align: center;
 }
+
 .game-column {
   width: 60%;
   display: flex;
