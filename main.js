@@ -96,7 +96,7 @@ function setPlayerImage() {
 }
 
 function addPlayerToken(article) {
-  currentGame.board[article.id] = currentGame.currentPlayer.id;
+  currentGame.addPlayerToBoardBox(article)
   article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
 }
 
