@@ -35,14 +35,17 @@ tttBox.addEventListener('click', () => {
         setStarterPlayer();
       }, 5000)
     }else if(currentGame.turnCounter === 9){
-      clearBoard();
-      startNewGame();
-      setStarterPlayer();
+      displayDrawGame()
+      setTimeout(() => {
+        clearBoard();
+        clearQuotes();
+        startNewGame();
+        setStarterPlayer();
+      }, 5000)
     }else{
       alternatePlayer();
     }
   }
-  //game draw- no winners-
 })
 
 // functions
@@ -80,6 +83,12 @@ function alternatePlayer() {
   gameTitle.innerText = `It's ${currentPlayer.name}'s turn!`
   setPlayerImage();
   currentGame.turnCounter++
+}
+
+function displayDrawGame(){
+  gameTitle.innerText = `It's a Draw!`
+  loadRandomQuote(playerOneQuote, blancheLoses);
+  loadRandomQuote(playerTwoQuote, dorothyLoses);
 }
 
 function setPlayerImage() {
