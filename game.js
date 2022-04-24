@@ -2,6 +2,7 @@ class Game{
   constructor(player1, player2) {
     this.playerOne = player1;
     this.playerTwo = player2;
+    this.currentPlayer = player1;
     this.turnCounter = 1;
     this.active = true;
     this.board = {
@@ -9,6 +10,14 @@ class Game{
                    a2: "", b2: "", c2: "",
                    a3: "", b3: "", c3: ""
                  }
+  }
+
+  togglePlayer(conditional) {
+    if(conditional) {
+      this.currentPlayer = this.playerTwo;
+    }else{
+      this.currentPlayer = this.playerOne;
+    }
   }
 
   findWinner(currentPlayerId) {

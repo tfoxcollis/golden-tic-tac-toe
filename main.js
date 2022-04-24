@@ -12,7 +12,6 @@ var tttBox = document.querySelector("#tttBox");
 var currentGame
 var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
 var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
-var currentPlayer = player1;
 var gameCount = 0;
 
 // eventlisteners
@@ -24,11 +23,16 @@ tttBox.addEventListener('click', () => {
   var article = event.target.closest("article");
   if(currentGame['board'][article.id] === "" && currentGame.active === true){
     addPlayerToken(article);
+    checkForWinner();
   }
-  if(currentGame.findWinner(currentPlayer.id)){
+});
+
+// functions
+function checkForWinner() {
+  if(currentGame.findWinner(currentGame.currentPlayer.id)){
     currentGame.active = false;
     increaseWins();
-    setGameTitle(`${currentPlayer.name} Wins!`);
+    setGameTitle(`${currentGame.currentPlayer.name} Wins!`);
     displayQuotes();
     delayRestart();
   }else if(currentGame.turnCounter === 9){
@@ -37,11 +41,10 @@ tttBox.addEventListener('click', () => {
   }else{
     alternatePlayer();
   }
-});
+}
 
-// functions
 function increaseWins() {
-  currentPlayer.increaseWins();
+  currentGame.currentPlayer.increaseWins();
   playerOneWins.innerText = `${player1.wins} wins`;
   playerTwoWins.innerText = `${player2.wins} wins`;
 }
@@ -61,8 +64,8 @@ function delayRestart(){
 }
 
 function setStarterPlayer() {
-  togglePlayer(gameCount %2 == 0);
-  setGameTitle(`It's ${currentPlayer.name}'s turn!`)
+  currentGame.togglePlayer(gameCount %2 == 0);
+  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`)
   setPlayerImage();
 }
 
@@ -70,18 +73,10 @@ function setGameTitle(string){
   gameTitle.innerText = string
 }
 function alternatePlayer() {
-  togglePlayer(currentPlayer.id == "one");
-  setGameTitle(`It's ${currentPlayer.name}'s turn!`);
+  currentGame.togglePlayer(currentGame.currentPlayer.id == "one");
+  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`);
   setPlayerImage();
   currentGame.turnCounter++;
-}
-
-function togglePlayer(conditional) {
-  if(conditional) {
-    currentPlayer = player2;
-  }else{
-    currentPlayer = player1;
-  }
 }
 
 function displayDrawGame(){
@@ -91,7 +86,7 @@ function displayDrawGame(){
 }
 
 function setPlayerImage() {
-  if(player1 === currentPlayer){
+  if(player1 === currentGame.currentPlayer){
     playerOneImg.src = player1.activeToken;
     playerTwoImg.src = player2.inactiveToken;
   }else {
@@ -101,8 +96,8 @@ function setPlayerImage() {
 }
 
 function addPlayerToken(article) {
-  currentGame.board[article.id] = currentPlayer.id;
-  article.innerHTML = `<img class="player-img" src="${currentPlayer.inactiveToken}" alt="player token">`;
+  currentGame.board[article.id] = currentGame.currentPlayer.id;
+  article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
 }
 
 function clearBoard() {
@@ -125,7 +120,7 @@ function clearQuotes() {
 }
 
 function displayQuotes() {
-  if(player1 === currentPlayer){
+  if(player1 === currentGame.currentPlayer){
     loadRandomQuote(playerOneQuote, blancheWins);
     loadRandomQuote(playerTwoQuote, dorothyLoses);
   }else {
