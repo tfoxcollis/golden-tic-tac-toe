@@ -29,7 +29,7 @@ tttBox.addEventListener('click', () => {
 
 // functions
 function checkForWinner() {
-  if(currentGame.findWinner(currentGame.currentPlayer.id)){
+  if(currentGame.findWinner()){
     currentGame.active = false;
     increaseWins();
     setGameTitle(`${currentGame.currentPlayer.name} Wins!`);

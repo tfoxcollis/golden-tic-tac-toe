@@ -20,22 +20,12 @@ class Game{
     }
   }
 
-  findWinner(currentPlayerId) {
+  findWinner() {
     for(var i = 0; i < winningCombos.length; i++){
-      if(this.checkComboForId(winningCombos[i], currentPlayerId)){
+      var combo = winningCombos[i]
+      if(this.board[combo[0]] === this.currentPlayer.id && this.board[combo[1]] === this.currentPlayer.id && this.board[combo[2]] === this.currentPlayer.id) {
         return true
       }
-    }
-  }
-  checkComboForId(combo, currentPlayerId){
-    var count = 0;
-    for (var i = 0; i < combo.length; i++) {
-      if(this.board[combo[i]] == currentPlayerId){
-        count++
-      }
-    }
-    if(count == 3){
-      return true
     }
   }
 }
