@@ -21,7 +21,7 @@ window.addEventListener('load', () => {
 
 tttBox.addEventListener('click', () => {
   var article = event.target.closest("article");
-  if(currentGame['board'][article.id] === "" && currentGame.active === true){
+  if(currentGame.addPlayerToBoardBox(article.id)){
     addPlayerToken(article);
     checkForWinner();
   }
@@ -30,12 +30,11 @@ tttBox.addEventListener('click', () => {
 // functions
 function checkForWinner() {
   if(currentGame.findWinner()){
-    currentGame.active = false;
     increaseWins();
     setGameTitle(`${currentGame.currentPlayer.name} Wins!`);
     displayQuotes();
     delayRestart();
-  }else if(currentGame.turnCounter === 9){
+  }else if(currentGame.determineDraw()){
     displayDrawGame()
     delayRestart();
   }else{
@@ -44,14 +43,8 @@ function checkForWinner() {
 }
 
 function increaseWins() {
-  currentGame.currentPlayer.increaseWins();
   playerOneWins.innerText = `${player1.wins} wins`;
   playerTwoWins.innerText = `${player2.wins} wins`;
-}
-
-function startNewGame() {
-  currentGame = new Game(player1, player2);
-  gameCount++;
 }
 
 function delayRestart(){
@@ -63,12 +56,6 @@ function delayRestart(){
   }, 10000)
 }
 
-function setStarterPlayer() {
-  currentGame.togglePlayer(gameCount %2 == 0);
-  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`)
-  setPlayerImage();
-}
-
 function setGameTitle(string){
   gameTitle.innerText = string
 }
@@ -76,7 +63,6 @@ function alternatePlayer() {
   currentGame.togglePlayer(currentGame.currentPlayer.id == "one");
   setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`);
   setPlayerImage();
-  currentGame.turnCounter++;
 }
 
 function displayDrawGame(){
@@ -85,21 +71,11 @@ function displayDrawGame(){
   loadRandomQuote(playerTwoQuote, dorothyLoses);
 }
 
-function setPlayerImage() {
-  if(player1 === currentGame.currentPlayer){
-    playerOneImg.src = player1.activeToken;
-    playerTwoImg.src = player2.inactiveToken;
-  }else {
-    playerOneImg.src = player1.inactiveToken;
-    playerTwoImg.src = player2.activeToken;
-  }
-}
-
 function addPlayerToken(article) {
-  currentGame.addPlayerToBoardBox(article)
   article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
 }
 
+//Functions to start new game/reset board
 function clearBoard() {
   tttBox.innerHTML = `
     <article id="a1" class="board-box box"></article>
@@ -114,6 +90,29 @@ function clearBoard() {
   `;
 }
 
+function startNewGame() {
+  currentGame = new Game(player1, player2);
+  gameCount++;
+}
+
+function setStarterPlayer() {
+  currentGame.togglePlayer(gameCount %2  == 0);
+  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`)
+  setPlayerImage();
+}
+
+//Toggle image for current player
+function setPlayerImage() {
+  if(player1 === currentGame.currentPlayer){
+    playerOneImg.src = player1.activeToken;
+    playerTwoImg.src = player2.inactiveToken;
+  }else {
+    playerOneImg.src = player1.inactiveToken;
+    playerTwoImg.src = player2.activeToken;
+  }
+}
+
+//functions to generate random quotes for the winner/loser
 function clearQuotes() {
   playerOneQuote.innerText = "";
   playerTwoQuote.innerText = "";
