@@ -51,9 +51,6 @@ body {
   min-height: 200px;
   margin-top: 40%;
   overflow-y: auto;
-}
-
-blockquote {
   font-size: 1.5em;
   line-height: 1.3;
   word-spacing: 5px;
@@ -70,7 +67,6 @@ blockquote {
   align-items: center;
   background-image: url("./assets/goldengirlsLR.jpeg");
   background-size: cover;
-
 }
 
 .game-header {

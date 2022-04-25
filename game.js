@@ -12,7 +12,6 @@ class Game{
                  }
   }
 
-
   addPlayerToBoardBox(articleId) {
     if(this.board[articleId] === "" && this.active === true){
       this.board[articleId] = this.currentPlayer.id;
