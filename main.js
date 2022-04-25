@@ -7,6 +7,7 @@ var playerOneQuote = document.querySelector("#playerOneQuote");
 var playerTwoQuote = document.querySelector("#playerTwoQuote");
 var gameTitle = document.querySelector("#gameTitle");
 var tttBox = document.querySelector("#tttBox");
+var boardBoxes = Array.from(document.querySelectorAll('.board-box'));
 
 //Global variables
 var currentGame
@@ -15,9 +16,7 @@ var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", 
 var gameCount = 0;
 
 // eventlisteners
-window.addEventListener('load', () => {
-  startNewGame();
-})
+window.addEventListener('load', startNewGame)
 
 tttBox.addEventListener('click', () => {
   var article = event.target.closest("article");
@@ -77,17 +76,9 @@ function addPlayerToken(article) {
 
 //Functions to start new game/reset board
 function clearBoard() {
-  tttBox.innerHTML = `
-    <article id="a1" class="board-box box"></article>
-    <article id="b1" class="board-box box"></article>
-    <article id="c1" class="board-box box"></article>
-    <article id="a2" class="board-box box"></article>
-    <article id="b2" class="board-box box"></article>
-    <article id="c2" class="board-box box"></article>
-    <article id="a3" class="board-box box"></article>
-    <article id="b3" class="board-box box"></article>
-    <article id="c3" class="board-box box"></article>
-  `;
+  for(var i = 0; i < boardBoxes.length; i++) {
+    boardBoxes[i].innerHTML = "";
+  }
 }
 
 function startNewGame() {
