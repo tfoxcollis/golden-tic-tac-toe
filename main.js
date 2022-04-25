@@ -46,6 +46,27 @@ function increaseWins() {
   playerTwoWins.innerText = `${player2.wins} wins`;
 }
 
+function setGameTitle(string){
+  gameTitle.innerText = string
+}
+
+function alternatePlayer() {
+  currentGame.togglePlayer(currentGame.currentPlayer.id == "one");
+  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`);
+  setPlayerImage();
+}
+
+function addPlayerToken(article) {
+  article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
+}
+
+function displayDrawGame(){
+  setGameTitle(`It's a Draw!`)
+  loadRandomQuote(playerOneQuote, blancheLoses);
+  loadRandomQuote(playerTwoQuote, dorothyLoses);
+}
+
+//Functions to start new game/reset board
 function delayRestart(){
   setTimeout(() => {
     clearQuotes();
@@ -55,26 +76,6 @@ function delayRestart(){
   }, 10000)
 }
 
-function setGameTitle(string){
-  gameTitle.innerText = string
-}
-function alternatePlayer() {
-  currentGame.togglePlayer(currentGame.currentPlayer.id == "one");
-  setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`);
-  setPlayerImage();
-}
-
-function displayDrawGame(){
-  setGameTitle(`It's a Draw!`)
-  loadRandomQuote(playerOneQuote, blancheLoses);
-  loadRandomQuote(playerTwoQuote, dorothyLoses);
-}
-
-function addPlayerToken(article) {
-  article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
-}
-
-//Functions to start new game/reset board
 function clearBoard() {
   for(var i = 0; i < boardBoxes.length; i++) {
     boardBoxes[i].innerHTML = "";
@@ -87,7 +88,7 @@ function startNewGame() {
 }
 
 function setStarterPlayer() {
-  currentGame.togglePlayer(gameCount %2  == 0);
+  currentGame.togglePlayer(gameCount %2 == 0);
   setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`)
   setPlayerImage();
 }
