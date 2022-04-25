@@ -1,8 +1,9 @@
 :root {
---font-family: fantasy;
---mintGreen: #449D9A;
---rose: #9A3263;
---mauve: #8F7084;
+--font-family: helvetica;
+--oliveGreen: #6C776B;
+--sunsetOrange: #ED7E52;
+--beige: #A68B6A;
+--linen: #F4ECD5;
 }
 
 * {
@@ -19,7 +20,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-image: linear-gradient(var(--rose), var(--mintGreen));
 }
 
 .box {
@@ -33,10 +33,13 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  background-image: linear-gradient(var(--sunsetOrange), var(--oliveGreen));
 }
 
 .player-img {
-  height: 170px;
+  height: 95%;
+  max-width: 95%;
+  max-height: 170px;
 }
 
 .player-column h2 {
@@ -44,9 +47,10 @@ body {
 }
 
 .quote-box {
-  width: 95%;
+  max-width: 95%;
   min-height: 200px;
   margin-top: 40%;
+  overflow-y: auto;
 }
 
 blockquote {
@@ -64,6 +68,9 @@ blockquote {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-image: url("./assets/goldengirlsLR.jpeg");
+  background-size: cover;
+
 }
 
 .game-header {
@@ -72,12 +79,17 @@ blockquote {
   align-items: flex-end;
   width: 100%;
   height: 20%;
-  border-bottom: double 8px black;
+  /* border-bottom: double 8px black; */
+  /* background-color: var(--beige); */
 }
 
 .game-header h1 {
-  font-size: 10vh;;
+  font-size: 10vh;
   height: 80%;
+  width: auto;
+  -webkit-text-fill-color: var(--linen);
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 4px;
 }
 
 .game-header img {
@@ -86,13 +98,14 @@ blockquote {
 }
 
 .ttt-box {
-  width: 500px;
+  width: 70%;
+  max-width: 500px;
   height: 60%;
   margin-top: 10%;
   padding-bottom: 2px;
   display: flex;
   flex-wrap: wrap;
-  background-image: linear-gradient(var(--mintGreen), var(--rose));
+  /* background-image: linear-gradient(var(--oliveGreen), var(--sunsetOrange)); */
 }
 
 .board-box {
@@ -102,7 +115,13 @@ blockquote {
   margin: 2px;
   flex: 1 0 30%;
   height: 32%;
-  background-color: var(--mauve);
+  background-color: var(--beige);
+}
+
+.board-box:hover {
+  cursor: grab;
+  transform: scale(1.03);
+  background-color: var(--oliveGreen);
 }
 
 .border-img {
