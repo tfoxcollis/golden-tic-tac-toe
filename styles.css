@@ -1,5 +1,5 @@
 :root {
---font-family: helvetica;
+--font-family: "trebuchet MS", serif;
 --oliveGreen: #6C776B;
 --sunsetOrange: #ED7E52;
 --beige: #A68B6A;
@@ -120,7 +120,7 @@ blockquote {
 
 .board-box:hover {
   cursor: grab;
-  transform: scale(1.03);
+  transform: scale(1.05);
   background-color: var(--oliveGreen);
 }
 
