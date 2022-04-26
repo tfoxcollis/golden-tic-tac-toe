@@ -16,9 +16,18 @@ Adding a little sass to the classic game of tic-tac-toe.  Choose your fighter- B
 
 -Tic-Tac-Toe boxes highlight and enhance as the cursor moves over them.
 
+
 ## Illustrations
 
 ![Demo](./assets/goldenTicTacToe.gif)
+
+## Challenges and Wins
+
+The main challenge of this project was that this was the first time as a student I did not have iterations that gave an outline of which steps to accomplish first.  To overcome this I drew a cascading timeline of what I believed the page should do when a user interacted with it.  Once I had that laid out, I added what functions I thought I would need to accomplish each task.  When I had a general outline, I started writing the easier functions that were similar to past projects.  This allowed me to start thinking in terms of coding with the game and led me to harder functions feeling empowered with what I had already achieved.  
+
+By far the most difficult part of this project was figuring out how to find a winner.  I thought about this in terms of the game battleship.  I had a grid of spots that my players could place their tokens on and then needed a way to check and see if they hit any winning combos (or battleships). Once I had the winning combos laid out, I knew using them in an array would allow me to loop through them and compare them against my game classes board.  
+
+The wins for me were all around accomplishing the small tasks I set out for myself.  I knew this project could easily overwhelm me, so breaking it down into little pieces that I could tackle really helped (and then cheering like crazy when even the smallest functionality was accomplished).  I was pleasantly surprised at how much fun I had with the CSS/HTML, because going into this project those two areas were what I was dreading the most.  
 
 ## Technologies Used
 
