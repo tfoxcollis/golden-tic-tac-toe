@@ -79,7 +79,7 @@ function delayRestart(){
     clearBoard();
     startNewGame();
     setStarterPlayer();
-  }, 5000)
+  }, 10000)
 }
 
 function clearBoard() {
