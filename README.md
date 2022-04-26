@@ -18,7 +18,7 @@ Adding a little sass to the classic game of tic-tac-toe.  Choose your fighter- B
 
 ## Illustrations
 
-![Demo](./goldenTicTacToe.gif)
+![Demo](./assets/goldenTicTacToe.gif)
 
 ## Technologies Used
 
