@@ -30,6 +30,8 @@ Adding a little sass to the classic game of tic-tac-toe.  Choose your fighter- B
 
 Some future features that could be implemented into this page are:
 
+- Local storage.
+
 - The ability to choose a player from the four characters from the show.
 
 - Player high score board that keeps track of all time wins.
