@@ -28,14 +28,14 @@ class Game{
          this.board[combo[2]] === this.currentPlayer.id) {
         this.active = false;
         this.currentPlayer.increaseWins();
-        return true
+        return true;
       }
     }
   }
 
   determineDraw() {
     if(this.turnCounter === 9) {
-      return true
+      return true;
     }
   }
 

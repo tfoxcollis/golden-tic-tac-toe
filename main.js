@@ -10,13 +10,13 @@ var tttBox = document.querySelector("#tttBox");
 var boardBoxes = Array.from(document.querySelectorAll('.board-box'));
 
 //Global variables
-var currentGame
+var currentGame;
 var player1 = new Player("playerOne", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
 var player2 = new Player("playerTwo", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
 var gameCount = 0;
 
 //Eventlisteners
-window.addEventListener('load', startNewGame)
+window.addEventListener('load', startNewGame);
 
 tttBox.addEventListener('click', () => {
   var article = event.target.closest("article");
@@ -26,7 +26,7 @@ tttBox.addEventListener('click', () => {
   }
 });
 
-// functions
+//Functions
 function checkForWinner() {
   if(currentGame.findWinner()){
     updateWins();
@@ -34,7 +34,7 @@ function checkForWinner() {
     displayQuotes();
     delayRestart();
   }else if(currentGame.determineDraw()){
-    displayDrawGame()
+    displayDrawGame();
     delayRestart();
   }else{
     alternatePlayer();
@@ -47,7 +47,7 @@ function updateWins() {
 }
 
 function setGameTitle(string){
-  gameTitle.innerText = string
+  gameTitle.innerText = string;
 }
 
 function alternatePlayer() {
@@ -58,16 +58,16 @@ function alternatePlayer() {
 
 function updateBoxes() {
   for (var i = 0; i < boardBoxes.length; i++) {
-    var playerId = currentGame.board[boardBoxes[i].id]
+    var playerId = currentGame.board[boardBoxes[i].id];
     if(playerId !== ""){
-      var playerToken = currentGame[playerId].inactiveToken
+      var playerToken = currentGame[playerId].inactiveToken;
       boardBoxes[i].innerHTML = `<img class="player-img" src="${playerToken}" alt="player token">`;
     }
   }
 }
 
 function displayDrawGame(){
-  setGameTitle(`It's a Draw!`)
+  setGameTitle(`It's a Draw!`);
   loadRandomQuote(playerOneQuote, blancheLoses);
   loadRandomQuote(playerTwoQuote, dorothyLoses);
 }
@@ -79,7 +79,7 @@ function delayRestart(){
     clearBoard();
     startNewGame();
     setStarterPlayer();
-  }, 10000)
+  }, 10000);
 }
 
 function clearBoard() {
@@ -110,7 +110,7 @@ function setPlayerImage() {
   }
 }
 
-//functions to generate random quotes for the winner/loser
+//Functions to generate random quotes for the winner/loser
 function clearQuotes() {
   playerOneQuote.innerText = "";
   playerTwoQuote.innerText = "";
