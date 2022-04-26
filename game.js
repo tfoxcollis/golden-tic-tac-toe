@@ -23,18 +23,14 @@ class Game{
   findWinner() {
     for(var i = 0; i < winningCombos.length; i++){
       var combo = winningCombos[i]
-      if(this.checkBoardBox(combo[0]) &&
-         this.checkBoardBox(combo[1]) &&
-         this.checkBoardBox(combo[2])) {
+      if(this.board[combo[0]] === this.currentPlayer.id &&
+         this.board[combo[1]] === this.currentPlayer.id &&
+         this.board[combo[2]] === this.currentPlayer.id) {
         this.active = false;
         this.currentPlayer.increaseWins();
         return true
       }
     }
-  }
-
-  checkBoardBox(key) {
-    return this.board[key] === this.currentPlayer.id
   }
 
   determineDraw() {

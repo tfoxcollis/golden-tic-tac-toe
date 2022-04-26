@@ -15,7 +15,7 @@ var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", 
 var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
 var gameCount = 0;
 
-// eventlisteners
+//Eventlisteners
 window.addEventListener('load', startNewGame)
 
 tttBox.addEventListener('click', () => {
@@ -29,7 +29,7 @@ tttBox.addEventListener('click', () => {
 // functions
 function checkForWinner() {
   if(currentGame.findWinner()){
-    increaseWins();
+    updateWins();
     setGameTitle(`${currentGame.currentPlayer.name} Wins!`);
     displayQuotes();
     delayRestart();
@@ -41,7 +41,7 @@ function checkForWinner() {
   }
 }
 
-function increaseWins() {
+function updateWins() {
   playerOneWins.innerText = `${player1.wins} wins`;
   playerTwoWins.innerText = `${player2.wins} wins`;
 }
@@ -73,7 +73,7 @@ function delayRestart(){
     clearBoard();
     startNewGame();
     setStarterPlayer();
-  }, 10000)
+  }, 5000)
 }
 
 function clearBoard() {
