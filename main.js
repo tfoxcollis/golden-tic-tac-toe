@@ -11,8 +11,8 @@ var boardBoxes = Array.from(document.querySelectorAll('.board-box'));
 
 //Global variables
 var currentGame
-var player1 = new Player("one", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
-var player2 = new Player("two", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
+var player1 = new Player("playerOne", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
+var player2 = new Player("playerTwo", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
 var gameCount = 0;
 
 //Eventlisteners
@@ -21,7 +21,7 @@ window.addEventListener('load', startNewGame)
 tttBox.addEventListener('click', () => {
   var article = event.target.closest("article");
   if(currentGame.addPlayerToBoardBox(article.id)){
-    addPlayerToken(article);
+    updateBoxes();
     checkForWinner();
   }
 });
@@ -51,13 +51,19 @@ function setGameTitle(string){
 }
 
 function alternatePlayer() {
-  currentGame.togglePlayer(currentGame.currentPlayer.id == "one");
+  currentGame.togglePlayer(currentGame.currentPlayer.id == "playerOne");
   setGameTitle(`It's ${currentGame.currentPlayer.name}'s turn!`);
   setPlayerImage();
 }
 
-function addPlayerToken(article) {
-  article.innerHTML = `<img class="player-img" src="${currentGame.currentPlayer.inactiveToken}" alt="player token">`;
+function updateBoxes() {
+  for (var i = 0; i < boardBoxes.length; i++) {
+    var playerId = currentGame.board[boardBoxes[i].id]
+    if(playerId !== ""){
+      var playerToken = currentGame[playerId].inactiveToken
+      boardBoxes[i].innerHTML = `<img class="player-img" src="${playerToken}" alt="player token">`;
+    }
+  }
 }
 
 function displayDrawGame(){
