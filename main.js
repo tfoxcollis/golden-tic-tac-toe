@@ -11,8 +11,8 @@ var boardBoxes = Array.from(document.querySelectorAll('.board-box'));
 
 //Global variables
 var currentGame;
-var player1 = new Player("playerOne", "./assets/blanche.gif", "./assets/blanche.PNG", "Blanche");
-var player2 = new Player("playerTwo", "./assets/dorothy.gif", "./assets/dorothy.PNG", "Dorothy");
+var player1 = new Player("playerOne", "./assets/blanche.GIF", "./assets/blanche.PNG", "Blanche");
+var player2 = new Player("playerTwo", "./assets/dorothy.GIF", "./assets/dorothy.PNG", "Dorothy");
 var gameCount = 0;
 
 //Eventlisteners
